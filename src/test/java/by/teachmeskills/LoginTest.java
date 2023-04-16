@@ -10,7 +10,7 @@ public class LoginTest extends BaseTest{
         AccountPage accountPage = new HomePage(driver).openSite()
                                                       .goToLoginPage()
                                                       .loginWithValidData();
-        Assertions.assertThat(accountPage.isOpened())
+        Assertions.assertThat(accountPage.isAccountPageOpened())
                 .isTrue()
                 .as("Account page should be opened after user logged with valid credentials");
     }
