@@ -32,15 +32,15 @@ public class AccountPage extends BasePage{
         Faker faker = new Faker();
         String phoneNumber1 = String.valueOf(faker.phoneNumber().cellPhone());
         driver.findElement(By.xpath("//span[text()='Add my first address']")).click();
-        driver.findElement(By.xpath("//input[@id='firstname']")).sendKeys(NAME);
-        driver.findElement(By.xpath("//input[@id='lastname']")).sendKeys(LAST_NAME);
-        driver.findElement(By.xpath("//input[@id='address1']")).sendKeys(ADDRESS);
-        driver.findElement(By.xpath("//input[@id='postcode']")).sendKeys(POST_CODE);
-        driver.findElement(By.xpath("//input[@id='city']")).sendKeys(CITY);
-        driver.findElement(By.xpath("//input[@id='phone']")).sendKeys("+" + phoneNumber1);
-        driver.findElement(By.xpath("//select[@id='id_state']")).click();
+        driver.findElement(By.id("firstname")).sendKeys(NAME);
+        driver.findElement(By.id("lastname")).sendKeys(LAST_NAME);
+        driver.findElement(By.id("address1")).sendKeys(ADDRESS);
+        driver.findElement(By.id("postcode")).sendKeys(POST_CODE);
+        driver.findElement(By.id("city")).sendKeys(CITY);
+        driver.findElement(By.id("phone")).sendKeys("+" + phoneNumber1);
+        driver.findElement(By.id("id_state")).click();
         driver.findElement(By.xpath("//option[@value='32']")).click();
-        driver.findElement(By.xpath("//input[@id='alias']")).sendKeys(ALIAS);
+        driver.findElement(By.id("alias")).sendKeys(ALIAS);
         driver.findElement(By.id("submitAddress")).click();
         return new AccountPage(driver);
     }
