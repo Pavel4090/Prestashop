@@ -1,4 +1,4 @@
-package util;
+package by.teachmeskills.util;
 
 import java.io.IOException;
 import java.io.InputStream;

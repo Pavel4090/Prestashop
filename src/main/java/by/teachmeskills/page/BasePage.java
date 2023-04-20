@@ -1,4 +1,4 @@
-package by.teachmeskills;
+package by.teachmeskills.page;
 
 import org.openqa.selenium.WebDriver;
 
