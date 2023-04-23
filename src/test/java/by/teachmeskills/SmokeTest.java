@@ -10,7 +10,7 @@ public class SmokeTest extends BaseTest {
     public void smokeTest() {
         boolean checkoutPage = new ProductsPage(driver).open()
                                                        .lookForHeader()
-                                                       .changeLang()
+                                                       .changeLangToEn()
                                                        .goToLoginPage()
                                                        .loginWithValidData()
                                                        .addNewAddressWithRequiredFields()

@@ -9,9 +9,15 @@ public class HeaderMenu extends BasePage{
         super(driver);
     }
 
-    public ProductsPage changeLang() {
+    public ProductsPage changeLangToEn() {
         driver.findElement(By.xpath("//div[@id='languages-block-top']")).click();
         driver.findElement(By.xpath("//ul[@id='first-languages']//span[text()='English']")).click();
+        return new ProductsPage(driver);
+    }
+
+    public ProductsPage changeCurrency() {
+        driver.findElement(By.id("setCurrency")).click();
+
         return new ProductsPage(driver);
     }
 }

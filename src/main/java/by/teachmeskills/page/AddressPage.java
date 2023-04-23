@@ -19,9 +19,16 @@ public class AddressPage extends BasePage {
         return title.isDisplayed();
     }
 
-    public boolean isAddressCreated() {
+    public boolean isAddressCreate() {
         WebElement btn = driver.findElement(BTN_DELETE);
         return btn.isDisplayed();
+    }
+
+
+    public AddressPage isAddressCreated() {
+        WebElement btn = driver.findElement(BTN_DELETE);
+        btn.isDisplayed();
+        return new AddressPage(driver);
     }
 
     public boolean isAddressDeleted() {

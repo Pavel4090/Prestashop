@@ -16,7 +16,7 @@ public class AccountTest extends BaseTest {
         Assertions.assertThat(addressPage.isAddressPageOpened())
                   .isTrue()
                   .as("New address should be added");
-        Assertions.assertThat(addressPage.isAddressCreated())
+        Assertions.assertThat(addressPage.isAddressCreate())
                   .isTrue()
                   .as("New address is not created");
 
@@ -36,9 +36,14 @@ public class AccountTest extends BaseTest {
 
     @Test
     public void createAndDeleteAddress() {
-        AddressPage addressPage = new ProductsPage(driver).open().goToLoginPage().loginWithValidData().addNewAddressWithRequiredFields()
-                                                          .deleteAddress();
-        Assertions.assertThat(addressPage.isAddressPageOpened())
+        boolean addressPage = new ProductsPage(driver).open()
+                                                      .goToLoginPage()
+                                                      .loginWithValidData()
+                                                      .addNewAddressWithRequiredFields()
+                                                      .isAddressCreated()
+                                                      .deleteAddress()
+                                                      .isAddressDeleted();
+        Assertions.assertThat(addressPage)
                   .isTrue()
                   .as("Address should be deleted");
 

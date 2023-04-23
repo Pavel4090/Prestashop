@@ -12,7 +12,7 @@ public class LoginTest extends BaseTest{
     public void checkLoginForValidUser() {
         AccountPage accountPage = new ProductsPage(driver).open()
                                                           .lookForHeader()
-                                                          .changeLang()
+                                                          .changeLangToEn()
                                                           .goToLoginPage()
                                                           .loginWithValidData();
         Assertions.assertThat(accountPage.isAccountPageOpened())

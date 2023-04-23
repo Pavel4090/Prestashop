@@ -35,4 +35,11 @@ public class ProductsPage extends BasePage {
       driver.findElement(By.xpath("//div[@class='button-container']//a[@title='Proceed to checkout']")).click();
         return new CartPage(driver);
     }
+
+    public ItemPage addItemInCart() {
+        driver.findElement(By.xpath("//h5[@itemprop='name']//a[@title='Blouse']")).click();
+        driver.findElement(By.xpath("//button[@name='Submit']")).click();
+        driver.findElement(By.xpath("//span[@title='Continue shopping']")).click();
+        return new ItemPage(driver);
+    }
 }
