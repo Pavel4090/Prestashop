@@ -16,6 +16,14 @@ public class AccountPage extends BasePage {
     static final By ACCOUNT_TITLE = By.xpath("//h1[text()='My account']");
     static final String POST_CODE = "12345";
 
+    Faker faker = new Faker();
+    String phoneNumber1 = String.valueOf(faker.phoneNumber().cellPhone());
+    String name = String.valueOf(faker.name().firstName());
+    String lastName = String.valueOf(faker.name().lastName());
+    String alias = String.valueOf(faker.funnyName().name());
+    String address = String.valueOf(faker.address().streetAddress());
+    String cityName = String.valueOf(faker.address().cityName());
+
     public AccountPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
@@ -26,13 +34,6 @@ public class AccountPage extends BasePage {
     }
 
     public AddressPage addNewAddressWithRequiredFields() {
-        Faker faker = new Faker();
-        String phoneNumber1 = String.valueOf(faker.phoneNumber().cellPhone());
-        String name = String.valueOf(faker.name().firstName());
-        String lastName = String.valueOf(faker.name().lastName());
-        String alias = String.valueOf(faker.funnyName().name());
-        String address = String.valueOf(faker.address().streetAddress());
-        String cityName = String.valueOf(faker.address().cityName());
         btnToAddress.click();
         driver.findElement(By.xpath("//span[text()='Add a new address']")).click();
         driver.findElement(By.id("firstname")).sendKeys(name);
@@ -50,6 +51,11 @@ public class AccountPage extends BasePage {
         return new AddressPage(driver);
     }
 
+    public HeaderMenu getHeaderMenu() {
+
+        return new HeaderMenu(driver);
+    }
+
     public AddressPage goToAddressPage() {
         btnToAddress.click();
         return new AddressPage(driver);
@@ -58,5 +64,15 @@ public class AccountPage extends BasePage {
     public ProductsPage goToProductsPage() {
         driver.findElement(By.xpath("//div[@id='header_logo']")).click();
         return new ProductsPage(driver);
+    }
+
+    public boolean checkedOrderHistory() {
+        boolean statusDis;
+        driver.findElement(By.xpath("//span[text()='Order history and details']")).click();
+        driver.findElement(By.xpath("//h1[text()='Order history']")).isDisplayed();
+        driver.findElement(By.xpath("//tr[@class='first_item ']//span[contains (text(),'Details')]")).click();
+        WebElement status = driver.findElement(By.xpath("//span[text()='В ожидании оплаты банком']"));
+        statusDis = status.isDisplayed();
+            return statusDis;
     }
 }

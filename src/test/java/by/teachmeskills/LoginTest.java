@@ -6,18 +6,18 @@ import by.teachmeskills.page.LoginPage;
 import org.assertj.core.api.Assertions;
 import org.testng.annotations.Test;
 
-public class LoginTest extends BaseTest{
+public class LoginTest extends BaseTest {
 
     @Test
     public void checkLoginForValidUser() {
         AccountPage accountPage = new ProductsPage(driver).open()
-                                                          .lookForHeader()
+                                                          .getHeaderMenu()
                                                           .changeLangToEn()
                                                           .goToLoginPage()
                                                           .loginWithValidData();
         Assertions.assertThat(accountPage.isAccountPageOpened())
-                .isTrue()
-                .as("Account page should be opened after user logged with valid credentials");
+                  .isTrue()
+                  .as("Account page should be opened after user logged with valid credentials");
     }
 
     @Test
@@ -25,7 +25,9 @@ public class LoginTest extends BaseTest{
         LoginPage loginPage = new ProductsPage(driver).open()
                                                       .goToLoginPage()
                                                       .loginWithoutData();
-        Assertions.assertThat(loginPage.errorMessageOfEmail()).isTrue().as("The error should be displayed");
+        Assertions.assertThat(loginPage.errorMessageOfEmail())
+                  .isTrue()
+                  .as("The error should be displayed");
     }
 
     @Test
@@ -33,6 +35,22 @@ public class LoginTest extends BaseTest{
         LoginPage loginPage = new ProductsPage(driver).open()
                                                       .goToLoginPage()
                                                       .loginWithoutPassword();
-        Assertions.assertThat(loginPage.errorMessageOfPassword()).isTrue().as("The error should be displayed");
+        Assertions.assertThat(loginPage.errorMessageOfPassword())
+                  .isTrue()
+                  .as("The error should be displayed");
+    }
+
+    @Test
+    public void logoutTest() {
+        boolean logout = new ProductsPage(driver).open()
+                                                 .getHeaderMenu()
+                                                 .changeLangToEn()
+                                                 .goToLoginPage()
+                                                 .loginWithValidData()
+                                                 .getHeaderMenu()
+                                                 .logout();
+        Assertions.assertThat(logout)
+                  .isTrue()
+                  .as("User is not logout");
     }
 }

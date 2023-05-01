@@ -1,6 +1,5 @@
 package by.teachmeskills;
 
-import by.teachmeskills.page.ItemPage;
 import by.teachmeskills.page.ProductsPage;
 import org.assertj.core.api.Assertions;
 import org.testng.annotations.Test;
@@ -9,17 +8,24 @@ public class CartTest extends BaseTest {
 
     @Test
     public void checkedAddingItemToCart() {
-        ItemPage cartPage = new ProductsPage(driver).open()
-                                                    .lookForHeader()
+        final String itemName = "Dress";
+        ProductsPage cartPage = new ProductsPage(driver).open()
+                                                    .getHeaderMenu()
                                                     .changeLangToEn()
                                                     .goToLoginPage()
                                                     .loginWithValidData()
                                                     .goToProductsPage()
-                                                    .addItemInCart();
-        //.checkedItemInCart();
-        Assertions.assertThat(cartPage)
-                  .as("Item does not match")
-                  .isNotNull();
+                                                    .addItemInTheCart(itemName);
+        String expectedName = cartPage.goToItem(itemName).getProductName();
+        String expectedPrice = cartPage.getProductPrice();
+        String actualPrice = cartPage.goToCart().getItemPrice();
+        String actualName = cartPage.getItemName();
+        Assertions.assertThat(expectedName)
+                  .isEqualTo(actualName)
+                  .as("Product name does not match");
+        Assertions.assertThat(expectedPrice)
+                  .isEqualTo(actualPrice)
+                  .as("Product price does not match");
 
     }
 }

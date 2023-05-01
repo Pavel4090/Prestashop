@@ -3,6 +3,7 @@ package by.teachmeskills;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
 import java.time.Duration;
@@ -19,10 +20,10 @@ public class BaseTest {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
     }
 
-//    @AfterMethod(alwaysRun = true)
-//    public void teraDown() {
-//        if (driver != null) {
-//            driver.quit();
-//        }
-//    }
+    @AfterMethod(alwaysRun = true)
+    public void teraDown() {
+        if (driver != null) {
+            driver.quit();
+        }
+    }
 }

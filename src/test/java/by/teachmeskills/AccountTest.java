@@ -24,18 +24,6 @@ public class AccountTest extends BaseTest {
 
     @Test
     public void deleteAddress() {
-        AddressPage addressPage = new ProductsPage(driver).open()
-                                                          .goToLoginPage()
-                                                          .loginWithValidData()
-                                                          .goToAddressPage()
-                                                          .deleteAddress();
-        Assertions.assertThat(addressPage.isAddressDeleted())
-                  .isTrue()
-                  .as("Address is not deleted");
-    }
-
-    @Test
-    public void createAndDeleteAddress() {
         boolean addressPage = new ProductsPage(driver).open()
                                                       .goToLoginPage()
                                                       .loginWithValidData()
@@ -46,6 +34,20 @@ public class AccountTest extends BaseTest {
         Assertions.assertThat(addressPage)
                   .isTrue()
                   .as("Address should be deleted");
+
+    }
+
+    @Test
+    public void checkedOrderHistory() {
+        boolean accountPage = new ProductsPage(driver).open()
+                                                      .getHeaderMenu()
+                                                      .changeLangToEn()
+                                                      .goToLoginPage()
+                                                      .loginWithValidData()
+                                                      .checkedOrderHistory();
+        Assertions.assertThat(accountPage)
+                  .isTrue()
+                  .as("Order not checked");
 
     }
 }

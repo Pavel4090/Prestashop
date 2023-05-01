@@ -25,6 +25,7 @@ public class LoginPage extends BasePage {
 
     static final By ERROR_EMAIL = By.xpath("//li[text()='An email address required.']");
     static final By ERROR_PASSWORD = By.xpath("//li[text()='Password is required.']");
+
     public LoginPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);

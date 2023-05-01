@@ -8,15 +8,16 @@ public class SmokeTest extends BaseTest {
 
     @Test
     public void smokeTest() {
+        final String productName = "Printed Dress";
         boolean checkoutPage = new ProductsPage(driver).open()
-                                                       .lookForHeader()
+                                                       .getHeaderMenu()
                                                        .changeLangToEn()
                                                        .goToLoginPage()
                                                        .loginWithValidData()
                                                        .addNewAddressWithRequiredFields()
                                                        .goToProductsPage()
-                                                       .addItemToCartAndGoToCart()
-                                                       .checkProduct()
+                                                       .addItemInCart(productName)
+                                                       .checkProductName(productName)
                                                        .goToCheckout()
                                                        .nextCheckout()
                                                        .agreeAndNext()

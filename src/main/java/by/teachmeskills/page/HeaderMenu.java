@@ -2,8 +2,9 @@ package by.teachmeskills.page;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
-public class HeaderMenu extends BasePage{
+public class HeaderMenu extends BasePage {
 
     public HeaderMenu(WebDriver driver) {
         super(driver);
@@ -15,9 +16,16 @@ public class HeaderMenu extends BasePage{
         return new ProductsPage(driver);
     }
 
-    public ProductsPage changeCurrency() {
-        driver.findElement(By.id("setCurrency")).click();
+    public boolean logout() {
+        boolean userLogout;
+        driver.findElement(By.xpath("//a[text()='Sign out']")).click();
+        WebElement element = driver.findElement(By.xpath("//a[contains (text(),'Sign in')]"));
+        userLogout = element.isDisplayed();
+        return userLogout;
+    }
 
-        return new ProductsPage(driver);
+    public LoginPage signIn() {
+        driver.findElement(By.xpath("//a[contains (text(),'Sign in')]")).click();
+        return new LoginPage(driver);
     }
 }
