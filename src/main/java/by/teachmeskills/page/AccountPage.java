@@ -16,13 +16,13 @@ public class AccountPage extends BasePage {
     static final By ACCOUNT_TITLE = By.xpath("//h1[text()='My account']");
     static final String POST_CODE = "12345";
 
-    Faker faker = new Faker();
-    String phoneNumber1 = String.valueOf(faker.phoneNumber().cellPhone());
-    String name = String.valueOf(faker.name().firstName());
-    String lastName = String.valueOf(faker.name().lastName());
-    String alias = String.valueOf(faker.funnyName().name());
-    String address = String.valueOf(faker.address().streetAddress());
-    String cityName = String.valueOf(faker.address().cityName());
+    private static final Faker FAKER = new Faker();
+    private static final String PHONE_NUMBER_1 = String.valueOf(FAKER.phoneNumber().cellPhone());
+    private static final String NAME = String.valueOf(FAKER.name().firstName());
+    private static final String LAST_NAME = String.valueOf(FAKER.name().lastName());
+    private static final String ALIAS = String.valueOf(FAKER.funnyName().name());
+    private static final String ADDRESS = String.valueOf(FAKER.address().streetAddress());
+    private static final String CITY_NAME = String.valueOf(FAKER.address().cityName());
 
     public AccountPage(WebDriver driver) {
         super(driver);
@@ -36,17 +36,17 @@ public class AccountPage extends BasePage {
     public AddressPage addNewAddressWithRequiredFields() {
         btnToAddress.click();
         driver.findElement(By.xpath("//span[text()='Add a new address']")).click();
-        driver.findElement(By.id("firstname")).sendKeys(name);
-        driver.findElement(By.id("lastname")).sendKeys(lastName);
-        driver.findElement(By.id("address1")).sendKeys(address);
+        driver.findElement(By.id("firstname")).sendKeys(NAME);
+        driver.findElement(By.id("lastname")).sendKeys(LAST_NAME);
+        driver.findElement(By.id("address1")).sendKeys(ADDRESS);
         driver.findElement(By.id("postcode")).sendKeys(POST_CODE);
-        driver.findElement(By.id("city")).sendKeys(cityName);
+        driver.findElement(By.id("city")).sendKeys(CITY_NAME);
         driver.findElement(By.id("id_country")).click();
         driver.findElement(By.xpath("//option[@value='216']")).click();
-        driver.findElement(By.id("phone")).sendKeys("+" + phoneNumber1);
+        driver.findElement(By.id("phone")).sendKeys("+" + PHONE_NUMBER_1);
         driver.findElement(By.id("id_state")).click();
         driver.findElement(By.xpath("//option[@value='321']")).click();
-        driver.findElement(By.id("alias")).sendKeys(alias);
+        driver.findElement(By.id("alias")).sendKeys(ALIAS);
         driver.findElement(By.id("submitAddress")).click();
         return new AddressPage(driver);
     }
@@ -54,11 +54,6 @@ public class AccountPage extends BasePage {
     public HeaderMenu getHeaderMenu() {
 
         return new HeaderMenu(driver);
-    }
-
-    public AddressPage goToAddressPage() {
-        btnToAddress.click();
-        return new AddressPage(driver);
     }
 
     public ProductsPage goToProductsPage() {
@@ -73,6 +68,15 @@ public class AccountPage extends BasePage {
         driver.findElement(By.xpath("//tr[@class='first_item ']//span[contains (text(),'Details')]")).click();
         WebElement status = driver.findElement(By.xpath("//span[text()='В ожидании оплаты банком']"));
         statusDis = status.isDisplayed();
-            return statusDis;
+        return statusDis;
+    }
+
+    public boolean checkedAddress() {
+        boolean goodAddress;
+        String actualAlias = driver.findElement(By.xpath("//h3[@class='page-subheading']")).getText();
+        String actualPhoneNumber = driver.findElement(By.xpath("//li//span[@class='address_phone']")).getText();
+        String actualAddress = driver.findElement(By.xpath("//li//span[@class='address_address1']")).getText();
+        goodAddress = (ALIAS.toUpperCase()).equals(actualAlias) & ("+" + PHONE_NUMBER_1).equals(actualPhoneNumber) & ADDRESS.equals(actualAddress);
+        return goodAddress;
     }
 }

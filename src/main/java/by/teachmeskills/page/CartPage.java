@@ -31,6 +31,6 @@ public class CartPage extends BasePage {
     }
 
     public String getItemPrice() {
-        return driver.findElement(By.xpath("//tr[@class='cart_item last_item first_item address_7424 odd']//td[@data-title='Unit price']//span//span[@class='price']")).getText();
+        return driver.findElement(By.xpath("//tr[@id='product_4_16_0_0']//td[@data-title='Unit price']//span//span[@class='price']")).getText();
     }
 }

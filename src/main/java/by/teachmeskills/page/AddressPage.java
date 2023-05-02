@@ -49,4 +49,8 @@ public class AddressPage extends BasePage {
         driver.findElement(By.xpath("//div[@id='header_logo']")).click();
         return new ProductsPage(driver);
     }
+
+    public AccountPage goToAccountPage() {
+        return new AccountPage(driver);
+    }
 }

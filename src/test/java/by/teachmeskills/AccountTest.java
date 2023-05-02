@@ -10,6 +10,8 @@ public class AccountTest extends BaseTest {
     @Test
     public void addAddress() {
         AddressPage addressPage = new ProductsPage(driver).open()
+                                                          .getHeaderMenu()
+                                                          .changeLangToEn()
                                                           .goToLoginPage()
                                                           .loginWithValidData()
                                                           .addNewAddressWithRequiredFields();
@@ -19,7 +21,11 @@ public class AccountTest extends BaseTest {
         Assertions.assertThat(addressPage.isAddressCreate())
                   .isTrue()
                   .as("New address is not created");
-
+        boolean checkedAddress = addressPage.goToAccountPage().checkedAddress();
+        Assertions.assertThat(checkedAddress)
+                  .isTrue()
+                  .as("Created address is correct");
+        addressPage.deleteAddress();
     }
 
     @Test
@@ -34,7 +40,6 @@ public class AccountTest extends BaseTest {
         Assertions.assertThat(addressPage)
                   .isTrue()
                   .as("Address should be deleted");
-
     }
 
     @Test
