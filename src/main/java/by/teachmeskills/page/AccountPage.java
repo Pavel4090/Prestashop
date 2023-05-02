@@ -7,6 +7,10 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 public class AccountPage extends BasePage {
 
@@ -66,7 +70,9 @@ public class AccountPage extends BasePage {
         driver.findElement(By.xpath("//span[text()='Order history and details']")).click();
         driver.findElement(By.xpath("//h1[text()='Order history']")).isDisplayed();
         driver.findElement(By.xpath("//tr[@class='first_item ']//span[contains (text(),'Details')]")).click();
-        WebElement status = driver.findElement(By.xpath("//h1[@class='page-heading']"));
+        WebElement follow = (new WebDriverWait(driver, Duration.ofSeconds(7)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h1[@class='page-heading']"))));
+        follow.isDisplayed();
+        WebElement status = driver.findElement(By.xpath("//div[@class='table_block']//th[@class='last_item']"));
         statusDis = status.isDisplayed();
         return statusDis;
     }
