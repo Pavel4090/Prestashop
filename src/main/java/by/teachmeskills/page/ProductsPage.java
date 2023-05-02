@@ -44,7 +44,7 @@ public class ProductsPage extends BasePage {
         By fullLocator = By.xpath(String.format(PRODUCT_ON_PAGE_LOCATOR, productName));
         driver.findElement(fullLocator).click();
         driver.findElement(By.xpath("//button[@name='Submit']")).click();
-        driver.findElement(PROCEED_TO_CHECKOUT).click();
+        driver.findElement(By.xpath("//div[@class='clearfix']//div[@class='button-container']//a[@title='Proceed to checkout']")).click();
         return new CartPage(driver);
     }
 

@@ -27,11 +27,6 @@ public class CheckoutPage extends BasePage {
         return new CheckoutPage(driver);
     }
 
-    public CheckoutPage payByCheck() {
-        driver.findElement(By.xpath("//a[@class='cheque']")).click();
-        return new CheckoutPage(driver);
-    }
-
     public CheckoutPage checkCurrency() {
         boolean selected = driver.findElement(By.xpath("//option[@value='1']")).isSelected();
         if (!selected) {
@@ -43,7 +38,17 @@ public class CheckoutPage extends BasePage {
         return new CheckoutPage(driver);
     }
 
-    public boolean checkingOrder() {
+    public CheckoutPage checkingOrder() {
+        driver.findElement(By.xpath("//h1[text()='Order confirmation']")).isDisplayed();
+        return new CheckoutPage(driver);
+    }
+
+    public boolean checkedOrder() {
         return driver.findElement(By.xpath("//h1[text()='Order confirmation']")).isDisplayed();
+    }
+
+    public AddressPage goToAddressPage() {
+        driver.findElement(By.xpath("//li/a[@title='My addresses']")).click();
+        return new AddressPage(driver);
     }
 }
