@@ -1,5 +1,6 @@
 package by.teachmeskills;
 
+import by.teachmeskills.page.AccountPage;
 import by.teachmeskills.page.AddressPage;
 import by.teachmeskills.page.ProductsPage;
 import org.assertj.core.api.Assertions;
@@ -44,15 +45,13 @@ public class AccountTest extends BaseTest {
 
     @Test
     public void checkedOrderHistory() {
-        boolean accountPage = new ProductsPage(driver).open()
-                                                      .getHeaderMenu()
-                                                      .changeLangToEn()
-                                                      .goToLoginPage()
-                                                      .loginWithValidData()
-                                                      .checkedOrderHistory();
-        Assertions.assertThat(accountPage)
+        AccountPage accountPage = new ProductsPage(driver).open()
+                                                          .getHeaderMenu()
+                                                          .changeLangToEn()
+                                                          .goToLoginPage()
+                                                          .loginWithValidData();
+        Assertions.assertThat(accountPage.checkedOrderHistory())
                   .isTrue()
                   .as("Order not checked");
-
     }
 }

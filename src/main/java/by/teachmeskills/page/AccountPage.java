@@ -66,7 +66,7 @@ public class AccountPage extends BasePage {
         driver.findElement(By.xpath("//span[text()='Order history and details']")).click();
         driver.findElement(By.xpath("//h1[text()='Order history']")).isDisplayed();
         driver.findElement(By.xpath("//tr[@class='first_item ']//span[contains (text(),'Details')]")).click();
-        WebElement status = driver.findElement(By.xpath("//span[text()='В ожидании оплаты банком']"));
+        WebElement status = driver.findElement(By.xpath("//h1[@class='page-heading']"));
         statusDis = status.isDisplayed();
         return statusDis;
     }
