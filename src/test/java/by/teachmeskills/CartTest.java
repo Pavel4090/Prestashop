@@ -10,12 +10,12 @@ public class CartTest extends BaseTest {
     public void checkedAddingItemToCart() {
         final String itemName = "Dress";
         ProductsPage cartPage = new ProductsPage(driver).open()
-                                                    .getHeaderMenu()
-                                                    .changeLangToEn()
-                                                    .goToLoginPage()
-                                                    .loginWithValidData()
-                                                    .goToProductsPage()
-                                                    .addItemInTheCart(itemName);
+                                                        .getHeaderMenu()
+                                                        .changeLangToEn()
+                                                        .goToLoginPage()
+                                                        .loginWithValidData()
+                                                        .goToProductsPage()
+                                                        .addItemInTheCart(itemName);
         String expectedName = cartPage.goToItem(itemName).getProductName();
         String expectedPrice = cartPage.getProductPrice();
         String actualPrice = cartPage.goToCart().getItemPrice();

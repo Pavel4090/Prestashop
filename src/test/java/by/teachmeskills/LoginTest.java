@@ -1,8 +1,8 @@
 package by.teachmeskills;
 
 import by.teachmeskills.page.AccountPage;
-import by.teachmeskills.page.ProductsPage;
 import by.teachmeskills.page.LoginPage;
+import by.teachmeskills.page.ProductsPage;
 import org.assertj.core.api.Assertions;
 import org.testng.annotations.Test;
 

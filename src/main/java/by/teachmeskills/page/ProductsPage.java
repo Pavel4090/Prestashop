@@ -1,8 +1,8 @@
 package by.teachmeskills.page;
 
+import by.teachmeskills.util.PropertiesLoader;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import by.teachmeskills.util.PropertiesLoader;
 import org.openqa.selenium.WebElement;
 
 import java.util.Properties;

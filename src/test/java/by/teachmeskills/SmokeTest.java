@@ -24,8 +24,8 @@ public class SmokeTest extends BaseTest {
                                                        .payBankWire()
                                                        .checkCurrency()
                                                        .checkingOrder();
-        Assertions.assertThat(checkoutPage).as("Order is not processed").isTrue();
-
-
+        Assertions.assertThat(checkoutPage)
+                  .as("Order is not processed")
+                  .isTrue();
     }
 }

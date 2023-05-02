@@ -10,14 +10,18 @@ public class SearchTest extends BaseTest {
     public void emptySearch() {
         boolean productsPage = new ProductsPage(driver).open()
                                                        .searchNullItem();
-        Assertions.assertThat(productsPage).isTrue().as("Search field is not empty");
+        Assertions.assertThat(productsPage)
+                  .isTrue()
+                  .as("Search field is not empty");
     }
 
     @Test
     public void searchItem() {
         boolean item = new ProductsPage(driver).open()
-                .searchItem()
-                .checkedItemInfo();
-        Assertions.assertThat(item).isTrue().as("Searching item does not match");
+                                               .searchItem()
+                                               .checkedItemInfo();
+        Assertions.assertThat(item)
+                  .isTrue()
+                  .as("Searching item does not match");
     }
 }
