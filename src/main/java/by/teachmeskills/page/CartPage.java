@@ -17,9 +17,9 @@ public class CartPage extends BasePage {
         return new CartPage(driver);
     }
 
-    public CheckoutPage goToCheckout() {
+    public CheckoutAddressPage goToCheckout() {
         driver.findElement(By.xpath("//p[@class='cart_navigation clearfix']//a[@title='Proceed to checkout']")).click();
-        return new CheckoutPage(driver);
+        return new CheckoutAddressPage(driver);
     }
 
     public String getTotalProducts() {

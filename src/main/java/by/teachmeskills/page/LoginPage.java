@@ -19,12 +19,14 @@ public class LoginPage extends BasePage {
     @FindBy(id = "email")
     private WebElement email;
 
+    @FindBy(id = "passwd")
+    private WebElement passwordElement;
+
     Properties properties = PropertiesLoader.loadProperties();
     String login = properties.getProperty("login");
     String password = properties.getProperty("password");
 
-    static final By ERROR_EMAIL = By.xpath("//li[text()='An email address required.']");
-    static final By ERROR_PASSWORD = By.xpath("//li[text()='Password is required.']");
+    static final By ERROR_MESSAGE = By.xpath("//div[@class='alert alert-danger']//ol//li");
 
     public LoginPage(WebDriver driver) {
         super(driver);
@@ -33,7 +35,7 @@ public class LoginPage extends BasePage {
 
     public AccountPage loginWithValidData() {
         email.sendKeys(login);
-        driver.findElement(By.id("passwd")).sendKeys(password);
+        passwordElement.sendKeys(password);
         btnSignIn.click();
         return new AccountPage(driver);
     }
@@ -49,11 +51,21 @@ public class LoginPage extends BasePage {
         return new LoginPage(driver);
     }
 
-    public boolean errorMessageOfEmail() {
-        return driver.findElement(ERROR_EMAIL).isDisplayed();
+    public LoginPage loginWithWrongPassword() {
+        email.sendKeys(login);
+        passwordElement.sendKeys("63574321");
+        btnSignIn.click();
+        return new LoginPage(driver);
     }
 
-    public boolean errorMessageOfPassword() {
-        return driver.findElement(ERROR_PASSWORD).isDisplayed();
+    public LoginPage loginWithWrongEmail() {
+        email.sendKeys("tester12345657890");
+        passwordElement.sendKeys(password);
+        btnSignIn.click();
+        return new LoginPage(driver);
+    }
+
+    public String errorMessage() {
+        return driver.findElement(ERROR_MESSAGE).getText();
     }
 }

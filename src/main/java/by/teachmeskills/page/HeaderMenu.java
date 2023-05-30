@@ -28,4 +28,10 @@ public class HeaderMenu extends BasePage {
         driver.findElement(By.xpath("//a[contains (text(),'Sign in')]")).click();
         return new LoginPage(driver);
     }
+
+    public ProductsPage changeCurrency() {
+        driver.findElement(By.xpath("//form[@id='setCurrency']//div[@class='current']")).click();
+        driver.findElement(By.xpath("//li//a[@title='Доллар']")).click();
+        return new ProductsPage(driver);
+    }
 }

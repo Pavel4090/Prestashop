@@ -9,7 +9,7 @@ import org.testng.annotations.Test;
 public class LoginTest extends BaseTest {
 
     @Test
-    public void checkLoginForValidUser() {
+    public void loginValidUser() {
         AccountPage accountPage = new ProductsPage(driver).open()
                                                           .getHeaderMenu()
                                                           .changeLangToEn()
@@ -22,21 +22,23 @@ public class LoginTest extends BaseTest {
 
     @Test
     public void loginWithoutData() {
+        String error = "An email address required.";
         LoginPage loginPage = new ProductsPage(driver).open()
                                                       .goToLoginPage()
                                                       .loginWithoutData();
-        Assertions.assertThat(loginPage.errorMessageOfEmail())
-                  .isTrue()
+        Assertions.assertThat(loginPage.errorMessage())
+                  .isEqualTo(error)
                   .as("The error should be displayed");
     }
 
     @Test
     public void loginWithoutPassword() {
+        String error = "Password is required.";
         LoginPage loginPage = new ProductsPage(driver).open()
                                                       .goToLoginPage()
                                                       .loginWithoutPassword();
-        Assertions.assertThat(loginPage.errorMessageOfPassword())
-                  .isTrue()
+        Assertions.assertThat(loginPage.errorMessage())
+                  .isEqualTo(error)
                   .as("The error should be displayed");
     }
 
@@ -52,5 +54,31 @@ public class LoginTest extends BaseTest {
         Assertions.assertThat(logout)
                   .isTrue()
                   .as("User is not logout");
+    }
+
+    @Test
+    public void loginWithWrongPassword() {
+        String error = "Authentication failed.";
+        LoginPage loginPage = new ProductsPage(driver).open()
+                                                      .getHeaderMenu()
+                                                      .changeLangToEn()
+                                                      .goToLoginPage()
+                                                      .loginWithWrongPassword();
+        Assertions.assertThat(loginPage.errorMessage())
+                  .as("The error should be displayed")
+                  .isEqualTo(error);
+    }
+
+    @Test
+    public void loginWithWrongEmail() {
+        String error = "Invalid email address.";
+        LoginPage loginPage = new ProductsPage(driver).open()
+                                                      .getHeaderMenu()
+                                                      .changeLangToEn()
+                                                      .goToLoginPage()
+                                                      .loginWithWrongEmail();
+        Assertions.assertThat(loginPage.errorMessage())
+                  .as("The error should be displayed")
+                  .isEqualTo(error);
     }
 }

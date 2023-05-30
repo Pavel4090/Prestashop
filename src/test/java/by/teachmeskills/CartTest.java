@@ -1,5 +1,6 @@
 package by.teachmeskills;
 
+import by.teachmeskills.page.OrderConfirmationPage;
 import by.teachmeskills.page.ProductsPage;
 import org.assertj.core.api.Assertions;
 import org.testng.annotations.Test;
@@ -26,6 +27,57 @@ public class CartTest extends BaseTest {
         Assertions.assertThat(expectedPrice)
                   .isEqualTo(actualPrice)
                   .as("Product price does not match");
+    }
+
+    @Test
+    public void payByCheck() {
+        final String productName = "Printed Dress";
+        final String expPayByCheck = "Your check must include:";
+        OrderConfirmationPage cartPage = new ProductsPage(driver).open()
+                                                                 .getHeaderMenu()
+                                                                 .changeLangToEn()
+                                                                 .getHeaderMenu()
+                                                                 .signIn()
+                                                                 .loginWithValidData()
+                                                                 .addNewAddressWithRequiredFields()
+                                                                 .goToProductsPage()
+                                                                 .addItemInCart(productName)
+                                                                 .goToCheckout()
+                                                                 .nextCheckout()
+                                                                 .agreeAndDelivery()
+                                                                 .payByCheck()
+                                                                 .checkCurrency()
+                                                                 .checkingOrder();
+        Assertions.assertThat(cartPage.getCheckText())
+                  .as("User didn't pay by check")
+                  .isEqualTo(expPayByCheck.toUpperCase());
+        cartPage.goToAddressPage().deleteAddress();
+
+    }
+
+    @Test
+    public void payByBankWire() {
+        final String productName = "Printed Dress";
+        final String expPayByBankWire = "Please send us a bank wire with";
+        OrderConfirmationPage cartPage = new ProductsPage(driver).open()
+                                                                 .getHeaderMenu()
+                                                                 .changeLangToEn()
+                                                                 .getHeaderMenu()
+                                                                 .signIn()
+                                                                 .loginWithValidData()
+                                                                 .addNewAddressWithRequiredFields()
+                                                                 .goToProductsPage()
+                                                                 .addItemInCart(productName)
+                                                                 .goToCheckout()
+                                                                 .nextCheckout()
+                                                                 .agreeAndDelivery()
+                                                                 .payByBankWire()
+                                                                 .checkCurrency()
+                                                                 .checkingOrder();
+        Assertions.assertThat(cartPage.getBankWireText().substring(63, 94))
+                  .as("User didn't pay by check")
+                  .isEqualTo(expPayByBankWire);
+        cartPage.goToAddressPage().deleteAddress();
 
     }
 }

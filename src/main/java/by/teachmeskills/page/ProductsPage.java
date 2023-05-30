@@ -4,7 +4,10 @@ import by.teachmeskills.util.PropertiesLoader;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
 import java.util.Properties;
 
 public class ProductsPage extends BasePage {
@@ -44,7 +47,8 @@ public class ProductsPage extends BasePage {
         By fullLocator = By.xpath(String.format(PRODUCT_ON_PAGE_LOCATOR, productName));
         driver.findElement(fullLocator).click();
         driver.findElement(By.xpath("//button[@name='Submit']")).click();
-        driver.findElement(By.xpath("//div[@class='clearfix']//div[@class='button-container']//a[@title='Proceed to checkout']")).click();
+        WebElement btn = driver.findElement(By.xpath("//div[@class='clearfix']//div[@class='button-container']//a[@title='Proceed to checkout']"));
+        new WebDriverWait(driver, Duration.ofSeconds(15)).until(ExpectedConditions.elementToBeClickable(btn)).click();
         return new CartPage(driver);
     }
 
@@ -52,7 +56,7 @@ public class ProductsPage extends BasePage {
         By fullLocator = By.xpath(String.format(PRODUCT_ON_PAGE_LOCATOR, productName));
         driver.findElement(fullLocator).click();
         driver.findElement(By.xpath("//button[@name='Submit']")).click();
-        driver.findElement(By.xpath("//div[@class='shopping_cart']//span[text()='Product']")).click();
+        driver.findElement(By.xpath("//div[@class='shopping_cart']")).click();
         driver.findElement(By.xpath("//div[@id='header_logo']")).click();
         return new ProductsPage(driver);
     }

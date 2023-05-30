@@ -23,6 +23,7 @@ import java.time.Duration;
 public class BaseTest {
 
     protected WebDriver driver;
+
     protected Faker faker;
 
     private final Logger log = LogManager.getLogger(BaseTest.class);
