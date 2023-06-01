@@ -11,7 +11,7 @@ public class ItemPage extends BasePage {
 
     public boolean checkedItemInfo() {
         boolean itemText;
-        String expText = "Black blouse with flowers";
+        String expText = "Printed Dress";
         driver.findElement(By.xpath("//span[@itemprop='price']")).isDisplayed();
         driver.findElement(By.xpath("//p[@id='product_reference']//span[@class='editable']")).isDisplayed();
         driver.findElement(By.xpath("//h1[@itemprop='name']")).isDisplayed();

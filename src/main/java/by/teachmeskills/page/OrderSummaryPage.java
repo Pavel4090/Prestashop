@@ -12,7 +12,7 @@ public class OrderSummaryPage extends BasePage{
     public OrderConfirmationPage checkCurrency() {
         boolean selected = driver.findElement(By.xpath("//option[@value='1']")).isSelected();
         if (!selected) {
-            driver.findElement(By.xpath("//select[@id='currency_payment']")).click();
+            driver.findElement(By.xpath("//select[@id='currency_payement']")).click();
             driver.findElement(By.xpath("//option[@value='1']")).click();
             driver.findElement(By.xpath("//span[text()='I confirm my order']")).click();
         } else {

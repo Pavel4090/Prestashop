@@ -68,8 +68,9 @@ public class ProductsPage extends BasePage {
     }
 
     public ItemPage searchItem() {
-        driver.findElement(By.id("search_query_top")).sendKeys("Blou");
-        driver.findElement(By.xpath("//li[@class='ac_odd']/strong[text()='blou']")).click();
+        driver.findElement(By.id("search_query_top")).sendKeys("Prin");
+        WebElement element = driver.findElement(By.xpath("//ul//li[4]/strong[text()='Prin']"));
+        new WebDriverWait(driver, Duration.ofSeconds(15)).until(ExpectedConditions.elementToBeClickable(element)).click();
         return new ItemPage(driver);
     }
 
@@ -80,6 +81,24 @@ public class ProductsPage extends BasePage {
         WebElement element = driver.findElement(By.xpath("//p[contains (text(),'Please enter a search keyword')]"));
         emptySearch = element.isDisplayed();
         return emptySearch;
+    }
+
+    public ItemPage searchByFullName(String productName) {
+        driver.findElement(By.id("search_query_top")).sendKeys(productName);
+        driver.findElement(By.xpath("//button[@name='submit_search']")).click();
+        driver.findElement(By.xpath("//h5[@itemprop='name']//a[@title='Printed Dress']")).click();
+        return new ItemPage(driver);
+    }
+
+    public ProductsPage wrongSearch(String message) {
+        driver.findElement(By.id("search_query_top")).sendKeys(message);
+        driver.findElement(By.xpath("//button[@name='submit_search']")).click();
+        return new ProductsPage(driver);
+    }
+
+    public String checkAlertMessage() {
+        WebElement alertMessage = driver.findElement(By.xpath("//div[@id='center_column']//p"));
+        return alertMessage.getText();
     }
 
     public CartPage goToCart() {

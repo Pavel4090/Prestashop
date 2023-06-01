@@ -2,14 +2,19 @@ package by.teachmeskills;
 
 import by.teachmeskills.page.OrderConfirmationPage;
 import by.teachmeskills.page.ProductsPage;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.assertj.core.api.Assertions;
 import org.testng.annotations.Test;
 
 public class CartTest extends BaseTest {
 
+    private final Logger log = LogManager.getLogger(BaseTest.class);
+
     @Test
     public void checkedAddingItemToCart() {
         final String itemName = "Dress";
+        log.info("What is the name of item: {}", itemName);
         ProductsPage cartPage = new ProductsPage(driver).open()
                                                         .getHeaderMenu()
                                                         .changeLangToEn()
@@ -32,6 +37,7 @@ public class CartTest extends BaseTest {
     @Test
     public void payByCheck() {
         final String productName = "Printed Dress";
+        log.info("What is the name of product: {}", productName);
         final String expPayByCheck = "Your check must include:";
         OrderConfirmationPage cartPage = new ProductsPage(driver).open()
                                                                  .getHeaderMenu()
@@ -58,6 +64,7 @@ public class CartTest extends BaseTest {
     @Test
     public void payByBankWire() {
         final String productName = "Printed Dress";
+        log.info("What is the name of product: {}", productName);
         final String expPayByBankWire = "Please send us a bank wire with";
         OrderConfirmationPage cartPage = new ProductsPage(driver).open()
                                                                  .getHeaderMenu()
