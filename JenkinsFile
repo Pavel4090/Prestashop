@@ -8,7 +8,7 @@ pipeline {
 
     parameters {
      gitParameter branchFilter: 'origin/(.*)', defaultValue: 'PS_1', name: 'BRANCH', description: 'Select branch', type: 'PT_BRANCH'
-    // choice choices: 'testng.xml', 'negative.xml', 'smoke.xml', 'regression.xml', name: 'XML_FILE'
+     choice choices: 'testng.xml', 'negative.xml', 'smoke.xml', 'regression.xml', name: 'XML_FILE'
     }
 
     stages {
@@ -22,7 +22,7 @@ pipeline {
                 // sh "mvn -Dmaven.test.failure.ignore=true clean package"
 
                 // To run Maven on a Windows agent, use
-                bat "mvn clean test -DsuiteXmlFile=src/test/resources/smoke.xml"
+                bat "mvn clean test -DsuiteXmlFile=src/test/resources/${XML_FILE}"
             }
         }
         stage('reports') {
