@@ -72,7 +72,7 @@ public class AccountPage extends BasePage {
         driver.findElement(By.xpath("//tr[@class='first_item ']//span[contains (text(),'Details')]")).click();
         WebElement follow = (new WebDriverWait(driver, Duration.ofSeconds(7)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h1[@class='page-heading']"))));
         follow.isDisplayed();
-        WebElement status = driver.findElement(By.xpath("//div[@class='table_block']//th[@class='last_item']"));
+        WebElement status = driver.findElement(By.xpath("//tr//th[@class='last_item' and text()='Status']"));
         statusDis = status.isDisplayed();
         return statusDis;
     }
