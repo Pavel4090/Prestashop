@@ -82,3 +82,12 @@ The range of goods is constantly updated, there are seasonal promotions, new ite
         1.Check order success.
 
         2.Check the payment method.
+
+<h4>Стек технологий:</h4>
+
+        1.Java
+        2.Selenium
+        3.Allure
+        4.Jenkins
+        5.Maven
+        6.TestNG
