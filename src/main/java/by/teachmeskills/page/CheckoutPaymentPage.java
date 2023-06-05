@@ -3,7 +3,7 @@ package by.teachmeskills.page;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class CheckoutPaymentPage extends BasePage{
+public class CheckoutPaymentPage extends BasePage {
 
     public CheckoutPaymentPage(WebDriver driver) {
         super(driver);
