@@ -4,7 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class CheckoutShippingPage extends BasePage{
+public class CheckoutShippingPage extends BasePage {
 
 
     public CheckoutShippingPage(WebDriver driver) {
@@ -25,5 +25,4 @@ public class CheckoutShippingPage extends BasePage{
         driver.findElement(By.xpath("//button[@name='processCarrier']")).click();
         return new CheckoutPaymentPage(driver);
     }
-
 }

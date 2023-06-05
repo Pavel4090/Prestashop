@@ -4,7 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class OrderConfirmationPage extends BasePage{
+public class OrderConfirmationPage extends BasePage {
     public OrderConfirmationPage(WebDriver driver) {
         super(driver);
     }

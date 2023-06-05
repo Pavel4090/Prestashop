@@ -4,7 +4,7 @@ import com.github.javafaker.Faker;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class CheckoutAddressPage extends BasePage{
+public class CheckoutAddressPage extends BasePage {
 
     static final String POST_CODE = "12345";
 

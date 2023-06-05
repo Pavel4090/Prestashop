@@ -58,7 +58,6 @@ public class CartTest extends BaseTest {
                   .as("User didn't pay by check")
                   .isEqualTo(expPayByCheck.toUpperCase());
         cartPage.goToAddressPage().deleteAddress();
-
     }
 
     @Test
