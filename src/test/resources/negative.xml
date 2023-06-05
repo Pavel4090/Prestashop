@@ -8,6 +8,7 @@
     <test name="Tests for Firefox">
         <classes>
             <class name="by.teachmeskills.NegativeTest"/>
+            <class name="by.teachmeskills.SearchTest"/>
         </classes>
     </test>
 </suite>
